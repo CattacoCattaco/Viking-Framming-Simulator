@@ -125,14 +125,14 @@ ul {
   align-content: center;
   height: 15%;
   width: 100%;
-  overflow: scroll;
+  overflow: auto;
 }
 .settings-area {
   display: none;
   flex-direction: column;
   flex-wrap: nowrap;
   align-items: center;
-  overflow: scroll;
+  overflow: auto;
   justify-content: flex-start;
   align-content: flex-start;
   background-color: rgb(120,230,250);
