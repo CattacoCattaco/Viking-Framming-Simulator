@@ -822,12 +822,10 @@ function updateTimeLeftInDay()
 
 function updateSettings() 
 {
-   var initial_settings = settings;
-   for(var setting in initial_settings)
+   for(var setting in settings)
    {
-      document.getElementById(setting).checked = initial_settings[setting];
+      document.getElementById(setting.toString()).checked = settings[setting];
    }
-   settings = initial_settings;
 }
 
 function getObjectiveButton(button_num)
