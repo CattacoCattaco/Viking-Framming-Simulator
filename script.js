@@ -2,8 +2,6 @@ const inventoryItemsList = document.getElementById("Inventory all items list");
 
 const settingsMenu = document.getElementById("settings-area");
 
-const fileInput = document.getElementById("file-input");
-
 const dayPercentLeftElement = document.getElementById("day-percent-left");
 
 const timeElement = document.getElementById("time");
@@ -138,25 +136,6 @@ var currentDailyTasks = [
 
 const maxObjectiveCount = 5;//Starts at 0
 const maxDailyObjectiveCount = 19;//Starts at 0
-
-const downloadToFile = (content, filename, contentType) => {
-  const a = document.createElement('a');
-  const file = new Blob([content], { type: contentType });
-
-  a.href = URL.createObjectURL(file);
-  a.download = filename;
-  a.click();
-
-  URL.revokeObjectURL(a.href);
-};
-
-var selectedFile;
-
-// get the value every time the user selects a new file
-fileInput.addEventListener("change", (e) => {
-  // e.target points to the input element
-  selectedFile = e.target.files[0]
-})
 
 window.onload = newGame();
 
@@ -302,62 +281,17 @@ function loadFromBrowser()
 
 function saveToFile()
 {
-   // Data which will write in a file.
-   var data = JSON.stringify(inventory) + "\n" + JSON.stringify(settings) + "\n" + JSON.stringify(currentTasks) + "\n" + JSON.stringify(currentDailyTasks) + "\n" + JSON.stringify(currentDay) + "\n" + JSON.stringify(dayPercentLeft) + "\n\n\n\n\n\n\n\n\n\n\n\n\n";
-
-   // Write data in 'Vinking_framming_save.txt' .
-   downloadToFile(data, 'Vinking_framming_save.txt', 'text/plain')
+   saveToBrowser();
+   
+   saveAllDataToFile();
 }
 
 function loadFromFile()
 {
-   if (!selectedFile) return
-   const reader = new FileReader()
-   reader.onload = (e) => {
-      // e.target points to the reader
-      const textContent = e.target.result
-      var data = textContent.split("\n");
-
-      if(data[0])
-      {
-         inventory = JSON.parse(data[0]);
-      }
-      if(data[1])
-      {
-         settings = JSON.parse(data[1]);
-      }
-      if(data[2])
-      {
-         currentTasks = JSON.parse(data[2]);
-      }
-      if(data[3])
-      {
-         currentDailyTasks = JSON.parse(data[3]);
-      }
-      if(data[4])
-      {
-         currentDay = JSON.parse(data[4]);
-      }
-      if(data[5])
-      {
-         dayPercentLeft = JSON.parse(data[5]);
-      }
-      
-      updateInventoryList();
-      updateSettings();
-      updateTasks();
-      updateTime();
-      updateTimeLeftInDay();
-      
-      console.log(`The content of ${selectedFile.name} is ${textContent}`)
-
+   loadAllDataFromFile(() => {
+      loadFromBrowser();
       saveToBrowser();
-   }
-   reader.onerror = (e) => {
-      const error = e.target.error
-      console.error(`Error occured while reading ${file.name}`, error)
-   }
-   reader.readAsText(selectedFile);
+   });
 }
 
 function newDay()
