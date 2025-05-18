@@ -141,11 +141,11 @@ window.onload = newGame();
 
 function newGame()
 {
-   document.getElementById("do_new_day_alert").addEventListener('input', newDaySettingChange, false);
-   document.getElementById("do_task_complete_alert").addEventListener('input', taskCompleteSettingChange, false);
+   document.getElementById("doNewDayAlert").addEventListener('input', newDaySettingChange, false);
+   document.getElementById("doTaskCompleteAlert").addEventListener('input', taskCompleteSettingChange, false);
    document.getElementById("do_not_enough_time_alert").addEventListener('input', notEnoughTimeSettingChange, false);
-   document.getElementById("do_new_season_warning_alert").addEventListener('input', newSeasonSettingChange, false);
-   document.getElementById("do_damage_alert").addEventListener('input', damageSettingChange, false);
+   document.getElementById("doNewSeasonWarningAlert").addEventListener('input', newSeasonSettingChange, false);
+   document.getElementById("doDamageAlert").addEventListener('input', damageSettingChange, false);
 
    if(localStorage.getItem("VFS_inventory") && (localStorage.getItem("VFS_lost") != "true"))
    {
@@ -824,6 +824,7 @@ function updateSettings()
 {
    for(var setting in settings)
    {
+      console.log(setting.toString());
       document.getElementById(setting.toString()).checked = settings[setting];
    }
 }
