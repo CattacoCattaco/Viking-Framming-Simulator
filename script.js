@@ -143,7 +143,7 @@ function newGame()
 {
    document.getElementById("doNewDayAlert").addEventListener('input', newDaySettingChange, false);
    document.getElementById("doTaskCompleteAlert").addEventListener('input', taskCompleteSettingChange, false);
-   document.getElementById("do_not_enough_time_alert").addEventListener('input', notEnoughTimeSettingChange, false);
+   document.getElementById("doNotEnoughTimeAlert").addEventListener('input', notEnoughTimeSettingChange, false);
    document.getElementById("doNewSeasonWarningAlert").addEventListener('input', newSeasonSettingChange, false);
    document.getElementById("doDamageAlert").addEventListener('input', damageSettingChange, false);
 
