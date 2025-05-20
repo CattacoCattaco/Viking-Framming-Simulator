@@ -290,7 +290,6 @@ function loadFromFile()
 {
    loadAllDataFromFile(() => {
       loadFromBrowser();
-      saveToBrowser();
    });
 }
 
