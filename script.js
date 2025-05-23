@@ -823,7 +823,6 @@ function updateSettings()
 {
    for(var setting in settings)
    {
-      console.log(setting.toString());
       document.getElementById(setting.toString()).checked = settings[setting];
    }
 }
